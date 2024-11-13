@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DemoDB.Migrations
 {
-    [DbContext(typeof(PiemersDB))]
-    [Migration("20200910175702_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(ExampleContext))]
+    [Migration("20240920155654_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,17 +20,22 @@ namespace DemoDB.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DemoDB.Models.Piemers", b =>
+            modelBuilder.Entity("DemoDB.Models.Example", b =>
                 {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("CodeName")
-                        .HasColumnName("Trasakcijas_kods")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnName("Apraksts")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Piemers");
+                    b.HasKey("Id");
+
+                    b.ToTable("Examples");
                 });
 #pragma warning restore 612, 618
         }

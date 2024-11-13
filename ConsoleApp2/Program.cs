@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Threading;
+using DemoDB;
 
-namespace DemoDB
+namespace ConsoleApp2
 {
-    public class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
             try
             {
-                Console.WriteLine("firsts");
+                Console.WriteLine("sec");
+                Thread.Sleep(1000);
                 var repo = new Repository();
                 var (e, transaction) = repo.Get();
-
-                Console.WriteLine(e.Id);
-                Thread.Sleep(3000);
                 transaction.Commit();
-                Console.ReadLine();
+                Console.WriteLine(e.Id);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Console.WriteLine(exc);
+                throw;
             }
+
         }
     }
 }
